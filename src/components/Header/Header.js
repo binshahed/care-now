@@ -9,8 +9,11 @@ import {
   Navbar,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useAuth from "../../context/useAuth";
 
 const Header = () => {
+  const { handleSignOut, user } = useAuth();
+  console.log(user);
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -28,18 +31,28 @@ const Header = () => {
               <Link to="/">Home</Link>
               <Link to="/services">Services</Link>
 
-              <Link to="/register">
-                {" "}
-                <Button variant="info" sm="my-2" className="ml-5">
-                  Sign Up
+              {user.email && <p className="align-items-center m-0 px-3 text-info">{user.email}</p>}
+
+              {user.email ? (
+                <Button
+                  onClick={handleSignOut}
+                  variant="info"
+                  sm="my-2"
+                  className="ml-5"
+                >
+                  Sign Out
                 </Button>
-              </Link>
-              <Link to="/login">
-                {" "}
-                <Button variant="info" sm="my-2" className="ml-5">
-                  Sign In
-                </Button>
-              </Link>
+              ) : (
+                <div>
+                  <Link to="/register">
+                    {" "}
+                    <Button variant="info" sm="my-2" className="ml-5">
+                      Sign Up
+                    </Button>
+                  </Link>
+
+                </div>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

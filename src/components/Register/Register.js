@@ -2,10 +2,18 @@ import "./Register.css";
 import { Col, Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import useAuth from "../../context/useAuth";
 
 const Register = () => {
-  const [user, setUser] = useState({});
+  const [formUser, setFormUser] = useState({});
+
+  const {
+    user,
+    googleSignIn,
+    handleSignUpWithEmailPassword,
+    updateDisplayName,
+  } = useAuth();
 
   const {
     register,
@@ -13,9 +21,13 @@ const Register = () => {
     watch,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (data) => setUser(data);
   console.log(user);
+
+  const onSubmit = (data) => {
+    handleSignUpWithEmailPassword(data.email, data.password);
+    setFormUser(data);
+  };
+  console.log(formUser);
 
   return (
     <div className="container App ">
@@ -53,7 +65,11 @@ const Register = () => {
           Already have an account? <Link to="/login">Login</Link>
         </p>
         <br />
-        <button type="button" className="login-with-google-btn">
+        <button
+          type="button"
+          onClick={googleSignIn}
+          className="login-with-google-btn"
+        >
           Sign in with Google
         </button>
       </div>

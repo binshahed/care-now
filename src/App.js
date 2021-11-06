@@ -7,23 +7,31 @@ import NotFound from "./components/NotFound/NotFound";
 import Services from "./components/Services/Services";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
+import initializeAuthentication from "./firebase/firebase.initialize";
+import AuthProvider from "./context/AuthProvider";
+import ServiceDetail from "./components/ServiceDetail/ServiceDetail";
+
+initializeAuthentication();
 
 function App() {
   return (
-    <div>
+    <AuthProvider>
       <Router>
         <Header />
         <Switch>
           <Route exact path="/">
             <Home />
           </Route>
-          <Route exact path="/services">
+          <Route path="/services">
             <Services />
           </Route>
-          <Route exact path="/register">
+          <Route path="/service/:id">
+            <ServiceDetail></ServiceDetail>
+          </Route>
+          <Route path="/register">
             <Register />
           </Route>
-          <Route exact path="/login">
+          <Route path="/login">
             <Login />
           </Route>
           <Route path="*">
@@ -32,7 +40,7 @@ function App() {
         </Switch>
         <Footer />
       </Router>
-    </div>
+    </AuthProvider>
   );
 }
 

@@ -1,5 +1,6 @@
 import "./Service.css";
-import { Button, Card, Col } from "react-bootstrap";
+import { Button, Card, Col, NavLink } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Service = (props) => {
   const { id, service_name, service_detail, service_image } = props.service;
@@ -13,7 +14,7 @@ const Service = (props) => {
         <Card.Body>
           <Card.Title>{service_name}</Card.Title>
           <Card.Text>{service_detail}</Card.Text>
-          <Button>More Info</Button>
+          <Link to={`/service/${id}`}>More Info</Link>
         </Card.Body>
       </Card>
     </Col>

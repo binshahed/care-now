@@ -3,9 +3,11 @@ import { Col, Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../context/useAuth";
 
 const Login = () => {
   const [user, setUser] = useState({});
+  const {handleSignInWithEmail, error}= useAuth()
 
   const {
     register,
@@ -14,7 +16,9 @@ const Login = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => setUser(data);
+  const onSubmit = (data) => {
+    handleSignInWithEmail(data.email, data.password)
+    setUser(data)};
   console.log(user);
 
   return (
@@ -37,8 +41,9 @@ const Login = () => {
               {...register("password", { required: true })}
             />
           </Form.Group>
+          <p className="text-danger">{error}</p>
           <Button variant="primary" type="submit">
-            Register
+            Login
           </Button>
         </Form>
         <p>
