@@ -1,5 +1,6 @@
 import "./Footer.css";
 import logo from "../../images/Logolight.webp";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -14,16 +15,16 @@ const Footer = () => {
           </div>
           <div className="col-md-3">
             <p>
-              <a href="/">About Us</a>
+              <Link to="/">About Us</Link>
             </p>
             <p>
-              <a href="/">Team</a>
+              <Link to="/doctors">Team</Link>
             </p>
             <p>
-              <a href="/">Testomonial</a>
+              <Link to="/">Testomonial</Link>
             </p>
             <p>
-              <a href="/">Services</a>
+              <Link to="/services">Services</Link>
             </p>
           </div>
           <div className="col-md-3">

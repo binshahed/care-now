@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
@@ -24,9 +25,13 @@ const ServiceDetail = () => {
       <h1 className="text-info  ">{service?.service_name}</h1>
       <img className="my-5" src={service?.service_image} alt="" />
       <p>{service?.service_detail}</p>
-      <p><strong>More Info</strong></p>
+      <p>
+        <strong>More Info</strong>
+      </p>
       <p>{service?.more_detail}</p>
-      <Link to="/appointment">Get appointment</Link>
+      <Link to="/appointment">
+        <Button variant="info">Get appointment</Button>
+      </Link>
     </div>
   );
 };

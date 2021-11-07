@@ -2,7 +2,7 @@ import "../Register/Register.css";
 import { Col, Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../context/useAuth";
 
 const Login = () => {

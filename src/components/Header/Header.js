@@ -32,17 +32,16 @@ const Header = () => {
               <Link to="/services">Services</Link>
               <Link to="/doctors">Doctors</Link>
 
-              {user.email && <p className="align-items-center m-0 px-3 text-info">{user.email}</p>}
+              {user.email && (
+                <p className="align-items-center m-0 px-3 text-info">
+                  {user.email}
+                </p>
+              )}
 
               {user.email ? (
-                <Button
-                  onClick={handleSignOut}
-                  variant="info"
-                  sm="my-2"
-                  className="ml-5"
-                >
+                <button onClick={handleSignOut} sm="my-2" className="ml-5 btn">
                   Sign Out
-                </Button>
+                </button>
               ) : (
                 <div>
                   <Link to="/register">
@@ -51,7 +50,6 @@ const Header = () => {
                       Sign Up
                     </Button>
                   </Link>
-
                 </div>
               )}
             </Nav>
