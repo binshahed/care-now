@@ -1,9 +1,11 @@
 import "./Service.css";
 import { Button, Card, Col, NavLink } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const Service = (props) => {
   const { id, service_name, service_detail, service_image } = props.service;
+  const history = useHistory();
+
   return (
     <Col>
       <Card>

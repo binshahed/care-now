@@ -10,6 +10,8 @@ import Login from "./components/Login/Login";
 import initializeAuthentication from "./firebase/firebase.initialize";
 import AuthProvider from "./context/AuthProvider";
 import ServiceDetail from "./components/ServiceDetail/ServiceDetail";
+import Appointment from "./components/Appointment/Appointment";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 initializeAuthentication();
 
@@ -25,9 +27,12 @@ function App() {
           <Route path="/services">
             <Services />
           </Route>
-          <Route path="/service/:id">
+          <Route path="/service/:serviceId">
             <ServiceDetail></ServiceDetail>
           </Route>
+          <PrivateRoute path="/appointment">
+            <Appointment />
+          </PrivateRoute>
           <Route path="/register">
             <Register />
           </Route>

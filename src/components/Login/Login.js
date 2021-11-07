@@ -7,18 +7,20 @@ import useAuth from "../../context/useAuth";
 
 const Login = () => {
   const [user, setUser] = useState({});
-  const {handleSignInWithEmail, error}= useAuth()
+  const { handleSignInWithEmail, error, googleSignIn } = useAuth();
 
   const {
     register,
+
     handleSubmit,
     watch,
     formState: { errors },
   } = useForm();
 
   const onSubmit = (data) => {
-    handleSignInWithEmail(data.email, data.password)
-    setUser(data)};
+    handleSignInWithEmail(data.email, data.password);
+    setUser(data);
+  };
   console.log(user);
 
   return (
@@ -50,7 +52,11 @@ const Login = () => {
           New at Care now? <Link to="/register">Register</Link>
         </p>
         <br />
-        <button type="button" className="login-with-google-btn">
+        <button
+          onClick={googleSignIn}
+          type="button"
+          className="login-with-google-btn"
+        >
           Sign in with Google
         </button>
       </div>

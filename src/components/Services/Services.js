@@ -6,12 +6,13 @@ import Service from "../Service/Service";
 const Services = () => {
   const [services, setServices] = useServices([]);
 
+
   return (
     <div className="container my-5">
       <div className="App" style={{ margin: "100px 0 30px 0" }}>
         <h6 className="text-info">OUR SERVICES</h6>
         <h3>
-          Providing Medical Care For The  Sickest In <br /> Our Community.
+          Providing Medical Care For The Sickest In <br /> Our Community.
         </h3>
       </div>
       {
