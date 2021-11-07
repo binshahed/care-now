@@ -7,7 +7,12 @@ import useAuth from "../../context/useAuth";
 
 const Login = () => {
   const [user, setUser] = useState({});
-  const { handleSignInWithEmail, error, googleSignIn } = useAuth();
+  const { handleSignInWithEmail, error, googleSignIn, setIsLoading, setError } =
+    useAuth();
+
+  const location = useLocation();
+  const history = useHistory();
+  const redirect_uri = location.state?.from || "/";
 
   const {
     register,
@@ -18,10 +23,44 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    handleSignInWithEmail(data.email, data.password);
+    handleSignInWithEmailAndPassword(data.email, data.password);
     setUser(data);
   };
   console.log(user);
+
+  // google Sign in
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        const user = result.user;
+        setError("");
+        setUser(user);
+        history.push(redirect_uri);
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  };
+
+  const handleSignInWithEmailAndPassword = (email, password) => {
+    handleSignInWithEmail(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        setUser(user);
+        history.push(redirect_uri);
+
+        setError("");
+      })
+      .catch((error) => {
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        setError(errorMessage);
+      });
+  };
 
   return (
     <div className="container App ">
@@ -49,11 +88,14 @@ const Login = () => {
           </Button>
         </Form>
         <p>
-          New at Care now? <Link to="/register">Register</Link>
+          New at Care now?{" "}
+          <Link to="/register" onClick={() => setError("")}>
+            Register
+          </Link>
         </p>
         <br />
         <button
-          onClick={googleSignIn}
+          onClick={handleGoogleSignIn}
           type="button"
           className="login-with-google-btn"
         >

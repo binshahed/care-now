@@ -8,12 +8,8 @@ import useAuth from "../../context/useAuth";
 const Register = () => {
   const [formUser, setFormUser] = useState({});
 
-  const {
-    user,
-    googleSignIn,
-    handleSignUpWithEmailPassword,
-    updateDisplayName,
-  } = useAuth();
+  const { user, googleSignIn, handleSignUpWithEmailPassword, error, setError } =
+    useAuth();
 
   const {
     register,
@@ -24,10 +20,9 @@ const Register = () => {
   console.log(user);
 
   const onSubmit = (data) => {
-    handleSignUpWithEmailPassword(data.email, data.password);
+    handleSignUpWithEmailPassword(data.name, data.email, data.password);
     setFormUser(data);
   };
-  console.log(formUser);
 
   return (
     <div className="container App ">
@@ -57,14 +52,20 @@ const Register = () => {
               {...register("password", { required: true })}
             />
           </Form.Group>
+          <p className="text-danger">{error}</p>
+
           <Button variant="primary" type="submit">
             Register
           </Button>
         </Form>
         <p>
-          Already have an account? <Link to="/login">Login</Link>
+          Already have an account?{" "}
+          <Link to="/login" onClick={() => setError("")}>
+            Login
+          </Link>
         </p>
         <br />
+
         <button
           type="button"
           onClick={googleSignIn}

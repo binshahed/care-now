@@ -12,8 +12,8 @@ import { useEffect, useState } from "react";
 
 const useFirebase = () => {
   const [user, setUser] = useState({});
-  const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
   const auth = getAuth();
 
@@ -24,50 +24,20 @@ const useFirebase = () => {
   ---------------*/
   const googleSignIn = () => {
     setIsLoading(true);
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        // This gives you a Google Access Token. You can use it to access the Google API.
-        const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
-        // The signed-in user info.
-        const user = result.user;
-        console.log(user);
-        setError("");
-
-        setUser(user);
-        // ...
-      })
-      .catch((error) => {
-        // Handle Errors here.
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        setError(errorMessage);
-
-        // The email of the user's account used.
-        const email = error.email;
-        // The AuthCredential type that was used.
-        const credential = GoogleAuthProvider.credentialFromError(error);
-        // ...
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    return signInWithPopup(auth, googleProvider);
   };
 
   /*-------------
   sign up with email and password
   ---------------*/
-  const handleSignUpWithEmailPassword = (email, password) => {
+  const handleSignUpWithEmailPassword = (name, email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
-        // Signed in
-
-        setError("");
-
-        // ...
+        const user = userCredential.user;
+        setUser(user);
+        updateDisplayName(name);
       })
       .catch((error) => {
-        const errorCode = error.code;
         const errorMessage = error.message;
         setError(errorMessage);
         // ..
@@ -79,22 +49,7 @@ const useFirebase = () => {
   ---------------*/
 
   const handleSignInWithEmail = (email, password) => {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        setUser(user);
-        setError("");
-
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        setError(errorMessage);
-      });
+    return signInWithEmailAndPassword(auth, email, password);
   };
   /*-------------
   update user name 
@@ -104,34 +59,23 @@ const useFirebase = () => {
     updateProfile(auth.currentUser, {
       displayName: name,
     })
-      .then(() => {
-        // Profile updated!
-        setError("");
-
-        // ...
+      .then((userCredential) => {
+        setUser(userCredential.user);
       })
       .catch((error) => {
-        // An error occurred
         setError(error.message);
-        // ...
       });
   };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/firebase.User
         setUser(user);
         setError("");
 
         // ...
-      } else {
-        // User is signed out
-        setError(error.message);
-        // ...
       }
-      setIsLoading(false)
+      setIsLoading(false);
     });
   }, []);
 
@@ -140,7 +84,7 @@ const useFirebase = () => {
   ---------------*/
 
   const handleSignOut = () => {
-    setIsLoading(true)
+    setIsLoading(true);
     const auth = getAuth();
     signOut(auth)
       .then(() => {
@@ -151,17 +95,19 @@ const useFirebase = () => {
         // An error happened.
         console.log(error.message);
         setError(error.message);
-      }).finally(()=>setIsLoading(false))
+      })
+      .finally(() => setIsLoading(false));
   };
 
   return {
     user,
     isLoading,
+    setIsLoading,
     error,
+    setError,
     googleSignIn,
     handleSignOut,
     handleSignUpWithEmailPassword,
-    updateDisplayName,
     handleSignInWithEmail,
   };
 };

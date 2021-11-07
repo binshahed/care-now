@@ -6,11 +6,11 @@ import { Carousel } from "react-bootstrap";
 const Slider = () => {
   return (
     <Carousel>
-      <Carousel.Item >
+      <Carousel.Item>
         <img className="d-block w-100" src={slider1} alt="First slide" />
         <Carousel.Caption className="text-dark d-none d-md-block d-lg-block">
           <h3>The best in modern dentistry</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <p>Beauty is power. A smile its sword.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -18,7 +18,7 @@ const Slider = () => {
 
         <Carousel.Caption className="text-dark d-none d-md-block d-lg-block">
           <h3>We use Latest Medical Technology </h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <p>All aboard for healthy smiles.</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
@@ -26,9 +26,7 @@ const Slider = () => {
 
         <Carousel.Caption className="text-dark d-none d-md-block d-lg-block">
           <h3>Improve your dental health</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+          <p>An attractive smile makes a lasting impression!</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import useAuth from "../../context/useAuth";
 
 const Header = () => {
-  const { handleSignOut, user } = useAuth();
+  const { handleSignOut, user, setError } = useAuth();
   console.log(user);
   return (
     <div>
@@ -31,10 +31,11 @@ const Header = () => {
               <Link to="/">Home</Link>
               <Link to="/services">Services</Link>
               <Link to="/doctors">Doctors</Link>
+              <Link to="/appointment">Appointment</Link>
 
               {user.email && (
-                <p className="align-items-center m-0 px-3 text-info">
-                  {user.email}
+                <p className="align-items-center m-0 px-3 text-danger ">
+                  {user?.displayName}
                 </p>
               )}
 
@@ -44,10 +45,15 @@ const Header = () => {
                 </button>
               ) : (
                 <div>
-                  <Link to="/register">
+                  <Link to="/login">
                     {" "}
-                    <Button variant="info" sm="my-2" className="ml-5">
-                      Sign Up
+                    <Button
+                      onClick={() => setError("")}
+                      variant="info"
+                      sm="my-2"
+                      className="ml-5"
+                    >
+                      Sign In
                     </Button>
                   </Link>
                 </div>
