@@ -12,6 +12,7 @@ import AuthProvider from "./context/AuthProvider";
 import ServiceDetail from "./components/ServiceDetail/ServiceDetail";
 import Appointment from "./components/Appointment/Appointment";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import OurDoctors from "./components/OurDoctors/OurDoctors";
 
 initializeAuthentication();
 
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/services">
             <Services />
+          </Route>
+          <Route path="/doctors">
+            <OurDoctors />
           </Route>
           <Route path="/service/:serviceId">
             <ServiceDetail></ServiceDetail>

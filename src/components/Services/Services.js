@@ -11,9 +11,9 @@ const Services = () => {
     <div className="container my-5">
       <div className="App" style={{ margin: "100px 0 30px 0" }}>
         <h6 className="text-info">OUR SERVICES</h6>
-        <h3>
+        <h4>
           Providing Medical Care For The Sickest In <br /> Our Community.
-        </h3>
+        </h4>
       </div>
       {
         <Row xs={1} md={3} sm={1} className="g-4">

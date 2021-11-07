@@ -30,6 +30,7 @@ const Header = () => {
             >
               <Link to="/">Home</Link>
               <Link to="/services">Services</Link>
+              <Link to="/doctors">Doctors</Link>
 
               {user.email && <p className="align-items-center m-0 px-3 text-info">{user.email}</p>}
 

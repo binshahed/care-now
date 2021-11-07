@@ -8,7 +8,7 @@ const ServiceDetail = () => {
   console.log(serviceId);
 
   useEffect(() => {
-    fetch("https://api.npoint.io/7cc673e1dfeceebbdc6b")
+    fetch("https://api.npoint.io/d8198d95eaa4027fc096")
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);
@@ -20,10 +20,12 @@ const ServiceDetail = () => {
   console.log(service);
 
   return (
-    <div className="App my-5">
-      <h1>{service.service_name}</h1>
-      <img src={service.service_image} alt="" />
-      <p>{service.service_detail}</p>
+    <div className="container App my-5">
+      <h1 className="text-info  ">{service?.service_name}</h1>
+      <img className="my-5" src={service?.service_image} alt="" />
+      <p>{service?.service_detail}</p>
+      <p><strong>More Info</strong></p>
+      <p>{service?.more_detail}</p>
       <Link to="/appointment">Get appointment</Link>
     </div>
   );
