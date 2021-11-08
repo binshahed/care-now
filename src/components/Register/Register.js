@@ -1,27 +1,39 @@
 import "./Register.css";
 import { Col, Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../context/useAuth";
 
 const Register = () => {
-  const [formUser, setFormUser] = useState({});
-
-  const { user, googleSignIn, handleSignUpWithEmailPassword, error, setError } =
+  const {  googleSignIn, handleSignUpWithEmailPassword, error, setError } =
     useAuth();
+  //  redirect auth
+  const location = useLocation();
+  const history = useHistory();
+  const redirect_uri = location.state?.from || "/";
 
+  // react hook form
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
-  console.log(user);
 
+  // form submit react hook form
   const onSubmit = (data) => {
-    handleSignUpWithEmailPassword(data.name, data.email, data.password);
-    setFormUser(data);
+    handleSignUpWithEmailPassword(
+      data.name,
+      data.email,
+      data.password,
+      history,
+      redirect_uri
+    );
+  };
+
+  // google sign in
+
+  const handleGoogleSignIn = () => {
+    googleSignIn(history, redirect_uri);
   };
 
   return (
@@ -52,6 +64,8 @@ const Register = () => {
               {...register("password", { required: true })}
             />
           </Form.Group>
+
+          {/* error message */}
           <p className="text-danger">{error}</p>
 
           <Button variant="primary" type="submit">
@@ -65,10 +79,10 @@ const Register = () => {
           </Link>
         </p>
         <br />
-
+        {/* google sign in */}
         <button
           type="button"
-          onClick={googleSignIn}
+          onClick={handleGoogleSignIn}
           className="login-with-google-btn"
         >
           Sign in with Google

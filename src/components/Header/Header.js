@@ -1,19 +1,11 @@
 import logo from "../../images/LogoDark.webp";
 import "./Header.css";
-import {
-  Button,
-  Container,
-  Form,
-  FormControl,
-  Nav,
-  Navbar,
-} from "react-bootstrap";
+import { Button, Container, Nav, Navbar } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useAuth from "../../context/useAuth";
 
 const Header = () => {
   const { handleSignOut, user, setError } = useAuth();
-  console.log(user);
   return (
     <div>
       <Navbar bg="light" expand="lg">

@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 
+
+// load data from db 
 const useServices=()=>{
     const [services, setServices] = useState([]);
     useEffect(() => {

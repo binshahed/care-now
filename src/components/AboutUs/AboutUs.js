@@ -4,9 +4,13 @@ const AboutUs = () => {
   return (
     <div className="container my-5">
       <div className="row">
+
+        {/* about us image */}
         <div className="col-md-6 col-sm-12 ">
           <img style={{ width: "80%" }} src={aboutus} alt="" />
         </div>
+
+        {/* about us content */}
         <div className="col-md-6 col-sm-12 text-left">
           <div style={{ margin: "100px 0 30px 0" }}>
             <h6 className="text-info">ABOUT US</h6>
@@ -14,24 +18,25 @@ const AboutUs = () => {
               We Complete Every <br />
               Step Carefully
             </h1>
+            {/* static data */}
             <p>
-              Dental Health Spa was conceived in September 2007 by Clinical
+              Care Now was conceived in September 2007 by Clinical
               Director and 2011’s Dental Hygienist of the Year finalist,
-              Christina Chatfield. “I had a vision to open a new hygiene-led
+              Christina Chat field. “I had a vision to open a new hygiene-led
               oral health care clinic on the high-street, where oral health care
               could become both accessible and demystified. That vision is
-              Dental Health Spa”. At Dental Health Spa we strive to offer you,
+              Care Now”. At Care Now we strive to offer you,
               the consumer, the very best in contemporary dental care. Our
               highly qualified professional dental practitioners provide care
               and treatment regardless of your current or previous dental
               history and we pride ourselves in making your experience at Dental
-              Health Spa as relaxing as possible. Dental Health Spa is not a
-              dental surgery as you know it! At Dental Health Spa we work in an
+              Health Spa as relaxing as possible. Care Now is not a
+              dental surgery as you know it! At Care Now we work in an
               open environment, protecting your privacy without conducting our
               treatments behind intimidating closed doors. Relax on our comfy
               sofa whilst you wait and gaze at the Brighton-inspired artwork on
               our walls. Our surgeries are state of the art with the best in
-              equipment and stringent sterilisation procedures. Many of our
+              equipment and stringent ster ilisation procedures. Many of our
               patients have come to us because of dental phobia. We will work
               with you to combat this fear, so if you are worried just let us
               know. We are a contemporary clinic and in the modern world, the

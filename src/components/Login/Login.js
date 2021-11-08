@@ -6,60 +6,39 @@ import { Link, useHistory, useLocation } from "react-router-dom";
 import useAuth from "../../context/useAuth";
 
 const Login = () => {
-  const [user, setUser] = useState({});
-  const { handleSignInWithEmail, error, googleSignIn, setIsLoading, setError } =
-    useAuth();
 
+  const { handleSignInWithEmail, error, googleSignIn,  setError,setUser } =
+    useAuth();
   const location = useLocation();
   const history = useHistory();
   const redirect_uri = location.state?.from || "/";
 
+  // react hook form 
   const {
     register,
 
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm();
 
+  // form submission 
   const onSubmit = (data) => {
     handleSignInWithEmailAndPassword(data.email, data.password);
     setUser(data);
   };
-  console.log(user);
+
+
 
   // google Sign in
   const handleGoogleSignIn = () => {
-    googleSignIn()
-      .then((result) => {
-        const user = result.user;
-        setError("");
-        setUser(user);
-        history.push(redirect_uri);
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    googleSignIn(history,redirect_uri)
+      
   };
 
+  // email password sign in
   const handleSignInWithEmailAndPassword = (email, password) => {
-    handleSignInWithEmail(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        setUser(user);
-        history.push(redirect_uri);
-
-        setError("");
-      })
-      .catch((error) => {
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        setError(errorMessage);
-      });
+    handleSignInWithEmail(email, password,history,redirect_uri)
+     
   };
 
   return (

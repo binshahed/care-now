@@ -1,7 +1,7 @@
 import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/Home/Home";
 import NotFound from "./components/NotFound/NotFound";
 import Services from "./components/Services/Services";
@@ -16,6 +16,7 @@ import OurDoctors from "./components/OurDoctors/OurDoctors";
 import AppointmentSubmit from "./components/Appointment/AppointmentSubmit";
 import AboutUs from "./components/AboutUs/AboutUs";
 
+// initialize firebase authentication
 initializeAuthentication();
 
 function App() {

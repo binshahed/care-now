@@ -15,13 +15,13 @@ const Footer = () => {
           </div>
           <div className="col-md-3">
             <p>
-              <Link to="/">About Us</Link>
+              <Link to="/aboutUs">About Us</Link>
             </p>
             <p>
               <Link to="/doctors">Team</Link>
             </p>
             <p>
-              <Link to="/">Testomonial</Link>
+              <Link to="/appointment">Appointment</Link>
             </p>
             <p>
               <Link to="/services">Services</Link>
