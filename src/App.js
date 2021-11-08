@@ -13,6 +13,8 @@ import ServiceDetail from "./components/ServiceDetail/ServiceDetail";
 import Appointment from "./components/Appointment/Appointment";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import OurDoctors from "./components/OurDoctors/OurDoctors";
+import AppointmentSubmit from "./components/Appointment/AppointmentSubmit";
+import AboutUs from "./components/AboutUs/AboutUs";
 
 initializeAuthentication();
 
@@ -31,11 +33,17 @@ function App() {
           <Route path="/doctors">
             <OurDoctors />
           </Route>
-          <Route path="/service/:serviceId">
-            <ServiceDetail></ServiceDetail>
+          <Route path="/aboutUs">
+            <AboutUs />
           </Route>
+          <PrivateRoute path="/service/:serviceId">
+            <ServiceDetail></ServiceDetail>
+          </PrivateRoute>
           <PrivateRoute path="/appointment">
             <Appointment />
+          </PrivateRoute>
+          <PrivateRoute exact path="/appointmentSubmit">
+            <AppointmentSubmit />
           </PrivateRoute>
           <Route path="/register">
             <Register />

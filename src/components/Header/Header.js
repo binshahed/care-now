@@ -32,6 +32,7 @@ const Header = () => {
               <Link to="/services">Services</Link>
               <Link to="/doctors">Doctors</Link>
               <Link to="/appointment">Appointment</Link>
+              <Link to="/aboutUs">About Us</Link>
 
               {user.email && (
                 <p className="align-items-center m-0 px-3 text-danger ">
